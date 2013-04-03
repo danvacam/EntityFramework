@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ImagesGalleryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ImagesGalleryModelStoreContainer">
+    <EntitySet Name="GalleryHeaderSet" EntityType="ImagesGalleryModel.Store.GalleryHeaderSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GalleryDetailSet" EntityType="ImagesGalleryModel.Store.GalleryDetailSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="GalleryHeaderGalleryDetail" Association="ImagesGalleryModel.Store.GalleryHeaderGalleryDetail">
+      <End Role="GalleryHeader" EntitySet="GalleryHeaderSet" />
+      <End Role="GalleryDetail" EntitySet="GalleryDetailSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GalleryHeaderSet">
+    <Key>
+      <PropertyRef Name="GalleryHeader_Id" />
+    </Key>
+    <Property Name="GalleryHeader_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GalleryDetailSet">
+    <Key>
+      <PropertyRef Name="GalleryDetail_Id" />
+    </Key>
+    <Property Name="GalleryDetail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GalleryHeaderGalleryHeader_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GalleryHeaderGalleryDetail">
+    <End Role="GalleryHeader" Type="ImagesGalleryModel.Store.GalleryHeaderSet" Multiplicity="1" />
+    <End Role="GalleryDetail" Type="ImagesGalleryModel.Store.GalleryDetailSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GalleryHeader">
+        <PropertyRef Name="GalleryHeader_Id" />
+      </Principal>
+      <Dependent Role="GalleryDetail">
+        <PropertyRef Name="GalleryHeaderGalleryHeader_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

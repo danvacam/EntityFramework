@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ImagesGalleryModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ImagesGalleryModelStoreContainer">
+    <EntitySet Name="GalleryHeaderSet" EntityType="ImagesGalleryModel.Store.GalleryHeaderSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GalleryDetailSet" EntityType="ImagesGalleryModel.Store.GalleryDetailSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="GalleryHeaderGalleryDetail" Association="ImagesGalleryModel.Store.GalleryHeaderGalleryDetail">
+      <End Role="GalleryHeader" EntitySet="GalleryHeaderSet" />
+      <End Role="GalleryDetail" EntitySet="GalleryDetailSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GalleryHeaderSet">
+    <Key>
+      <PropertyRef Name="GalleryHeader_Id" />
+    </Key>
+    <Property Name="GalleryHeader_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GalleryDetailSet">
+    <Key>
+      <PropertyRef Name="GalleryDetail_Id" />
+    </Key>
+    <Property Name="GalleryDetail_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageSrc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GalleryHeaderGalleryHeader_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="GalleryHeaderGalleryDetail">
+    <End Role="GalleryHeader" Type="ImagesGalleryModel.Store.GalleryHeaderSet" Multiplicity="1" />
+    <End Role="GalleryDetail" Type="ImagesGalleryModel.Store.GalleryDetailSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GalleryHeader">
+        <PropertyRef Name="GalleryHeader_Id" />
+      </Principal>
+      <Dependent Role="GalleryDetail">
+        <PropertyRef Name="GalleryHeaderGalleryHeader_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ImagesGalleryModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="GalleryContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="GalleryHeaderSet" EntityType="ImagesGalleryModel.GalleryHeader" />
+          <EntitySet Name="GalleryDetailSet" EntityType="ImagesGalleryModel.GalleryDetail" />
+          <AssociationSet Name="GalleryHeaderGalleryDetail" Association="ImagesGalleryModel.GalleryHeaderGalleryDetail">
+            <End Role="GalleryHeader" EntitySet="GalleryHeaderSet" />
+            <End Role="GalleryDetail" EntitySet="GalleryDetailSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="GalleryHeader">
+          <Key>
+            <PropertyRef Name="GalleryHeader_Id" />
+          </Key>
+          <Property Type="Int32" Name="GalleryHeader_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" />
+          <NavigationProperty Name="GalleryDetail" Relationship="ImagesGalleryModel.GalleryHeaderGalleryDetail" FromRole="GalleryHeader" ToRole="GalleryDetail" />
+        </EntityType>
+        <EntityType Name="GalleryDetail">
+          <Key>
+            <PropertyRef Name="GalleryDetail_Id" />
+          </Key>
+          <Property Type="Int32" Name="GalleryDetail_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImageSrc" Nullable="false" />
+          <Property Type="String" Name="ImageTitle" Nullable="false" />
+          <NavigationProperty Name="GalleryHeader" Relationship="ImagesGalleryModel.GalleryHeaderGalleryDetail" FromRole="GalleryDetail" ToRole="GalleryHeader" />
+          <Property Type="Int32" Name="GalleryHeaderGalleryHeader_Id" Nullable="false" />
+        </EntityType>
+        <Association Name="GalleryHeaderGalleryDetail">
+          <End Type="ImagesGalleryModel.GalleryHeader" Role="GalleryHeader" Multiplicity="1" />
+          <End Type="ImagesGalleryModel.GalleryDetail" Role="GalleryDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GalleryHeader">
+              <PropertyRef Name="GalleryHeader_Id" />
+            </Principal>
+            <Dependent Role="GalleryDetail">
+              <PropertyRef Name="GalleryHeaderGalleryHeader_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ImagesGalleryModelStoreContainer" CdmEntityContainer="GalleryContainer">
+    <EntitySetMapping Name="GalleryHeaderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ImagesGalleryModel.GalleryHeader)">
+        <MappingFragment StoreEntitySet="GalleryHeaderSet">
+          <ScalarProperty Name="GalleryHeader_Id" ColumnName="GalleryHeader_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GalleryDetailSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ImagesGalleryModel.GalleryDetail)">
+        <MappingFragment StoreEntitySet="GalleryDetailSet">
+          <ScalarProperty Name="GalleryDetail_Id" ColumnName="GalleryDetail_Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="ImageTitle" ColumnName="ImageTitle" />
+          <ScalarProperty Name="GalleryHeaderGalleryHeader_Id" ColumnName="GalleryHeaderGalleryHeader_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ImagesGalleryModelStoreContainer" CdmEntityContainer="GalleryContainer">
+    <EntitySetMapping Name="GalleryHeaderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ImagesGalleryModel.GalleryHeader)">
+        <MappingFragment StoreEntitySet="GalleryHeaderSet">
+          <ScalarProperty Name="GalleryHeader_Id" ColumnName="GalleryHeader_Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GalleryDetailSet">
+      <EntityTypeMapping TypeName="IsTypeOf(ImagesGalleryModel.GalleryDetail)">
+        <MappingFragment StoreEntitySet="GalleryDetailSet">
+          <ScalarProperty Name="GalleryDetail_Id" ColumnName="GalleryDetail_Id" />
+          <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+          <ScalarProperty Name="ImageTitle" ColumnName="ImageTitle" />
+          <ScalarProperty Name="GalleryHeaderGalleryHeader_Id" ColumnName="GalleryHeaderGalleryHeader_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

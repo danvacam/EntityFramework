@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ImagesGalleryModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="GalleryContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GalleryHeaderSet" EntityType="ImagesGalleryModel.GalleryHeader" />
+    <EntitySet Name="GalleryDetailSet" EntityType="ImagesGalleryModel.GalleryDetail" />
+    <AssociationSet Name="GalleryHeaderGalleryDetail" Association="ImagesGalleryModel.GalleryHeaderGalleryDetail">
+      <End Role="GalleryHeader" EntitySet="GalleryHeaderSet" />
+      <End Role="GalleryDetail" EntitySet="GalleryDetailSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GalleryHeader">
+    <Key>
+      <PropertyRef Name="GalleryHeader_Id" />
+    </Key>
+    <Property Type="Int32" Name="GalleryHeader_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" />
+    <NavigationProperty Name="GalleryDetail" Relationship="ImagesGalleryModel.GalleryHeaderGalleryDetail" FromRole="GalleryHeader" ToRole="GalleryDetail" />
+  </EntityType>
+  <EntityType Name="GalleryDetail">
+    <Key>
+      <PropertyRef Name="GalleryDetail_Id" />
+    </Key>
+    <Property Type="Int32" Name="GalleryDetail_Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ImageSrc" Nullable="false" />
+    <Property Type="String" Name="ImageTitle" Nullable="false" />
+    <NavigationProperty Name="GalleryHeader" Relationship="ImagesGalleryModel.GalleryHeaderGalleryDetail" FromRole="GalleryDetail" ToRole="GalleryHeader" />
+    <Property Type="Int32" Name="GalleryHeaderGalleryHeader_Id" Nullable="false" />
+  </EntityType>
+  <Association Name="GalleryHeaderGalleryDetail">
+    <End Type="ImagesGalleryModel.GalleryHeader" Role="GalleryHeader" Multiplicity="1" />
+    <End Type="ImagesGalleryModel.GalleryDetail" Role="GalleryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GalleryHeader">
+        <PropertyRef Name="GalleryHeader_Id" />
+      </Principal>
+      <Dependent Role="GalleryDetail">
+        <PropertyRef Name="GalleryHeaderGalleryHeader_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

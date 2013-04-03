@@ -1,0 +1,8 @@
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\bin\Debug\EF_5_ModelFirst.exe.config
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\bin\Debug\EF_5_ModelFirst.exe
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\bin\Debug\EF_5_ModelFirst.pdb
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\bin\Debug\EntityFramework.dll
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\bin\Debug\EntityFramework.xml
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\obj\Debug\EF_5_ModelFirst.csprojResolveAssemblyReference.cache
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\obj\Debug\EF_5_ModelFirst.exe
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_ModelFirst\EF_5_ModelFirst\obj\Debug\EF_5_ModelFirst.pdb
