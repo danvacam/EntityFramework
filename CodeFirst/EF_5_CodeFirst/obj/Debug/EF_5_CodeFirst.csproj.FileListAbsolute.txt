@@ -1,0 +1,1 @@
+c:\users\cammard\documents\visual studio 2012\Projects\EF_5_CodeFirst\EF_5_CodeFirst\bin\Debug\EF_5_CodeFirst.exe.config
